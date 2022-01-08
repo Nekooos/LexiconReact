@@ -40,11 +40,19 @@ class CreatePerson extends React.Component {
     })};
       
     validate = () => {
-        
+        let nameError = "";
         let phoneError = "";
         let cityError = "";
 
+        if(this.state.name === '') {
+            nameError = "Name is required"
+        }
 
+        if(nameError) {
+            this.setState({ nameErrorMessage: nameError });
+            console.log(nameError)
+            return false;
+        }
 
         if(this.state.phoneNumber === '') {
             phoneError = "Phone Number is required"
@@ -73,17 +81,6 @@ class CreatePerson extends React.Component {
           name: e.target.value
         });
 
-        let nameError = "";
-
-        if(this.state.name === '') {
-            nameError = "Name is required"
-        }
-
-        if(nameError) {
-            this.setState({ nameErrorMessage: nameError });
-            console.log(nameError)
-            return false;
-        }
     }
 
     onPhoneNumberChange = e => {
