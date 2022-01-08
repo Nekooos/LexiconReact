@@ -1,7 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import PeoplesTableValues from './poeplesTablevalues';
-import useState from 'react'; 
 import SortTable from './sortTable';
 
 
@@ -50,38 +48,10 @@ class PeoplesList extends React.Component {
         }
     }
 
-    
-    //<Route path="/user/:userId" />
     render() {
-        return (
-            
-        
-            
-            <div> 
-            <SortTable data = {this.state.peoples} />
-            <button className="btn btn-primary" onClick={() => this.sortArray()}>Sort by name</button>
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">PhoneNumber</th>
-                        <th scope="col">City</th>
-                        <th scope="col">Country</th>
-                        <th scope="col">Language</th>
-                    </tr>
-                </thead>
-                <tbody>
-              
-                {this.state.peoples.map((person, index) => {
-                    return <PeoplesTableValues personData = {person} key = {`post-list-key ${index}`} />
-                })}
-                </tbody>
-            </table>
-            </div>
+        return(
+        <SortTable data = {this.state.peoples} />
         )
-        
     }
 }
-
 export default PeoplesList

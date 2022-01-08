@@ -18,6 +18,9 @@ function PeopleDetails() {
             fetchData();
         }, [id])
 
+        if(person === undefined) {
+            return null
+        }
         
         return (
             

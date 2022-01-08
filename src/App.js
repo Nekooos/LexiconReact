@@ -4,6 +4,7 @@ import CreatePerson from './peoples/createPerson';
 import PeopleDetails from './peoples/peopleDetails';
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom"
 import ErrorPage from './Error/ErrorPage';
+import SortTable from './peoples/sortTable';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
         </li>
         </ul>
         <Routes>
-          <Route path="/" element={<PeoplesList />} />
+          <Route path="/" element={<SortTable />} />
           <Route path="/create" element={<CreatePerson />} />
           <Route path="/details/:id" element={<PeopleDetails />} />
           <Route path="*" element={<ErrorPage />} /> 

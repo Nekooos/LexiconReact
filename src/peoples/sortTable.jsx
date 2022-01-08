@@ -1,17 +1,24 @@
 import React from 'react'
 import { useState } from 'react/cjs/react.development'
-import PeoplesTableValues from './poeplesTablevalues'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+import { useEffect } from 'react'
 
-function SortTable(props) {
+function SortTable() {
 
-    const[data, setData] = useState(props.data)
-    const[order, setOrder] = useState("ASC")
+        const[data, setData] = useState()
+        const[order, setOrder] = useState("ASC")
+        useEffect(() => {
+        axios.get('https://localhost:5001/api/React/get-all')
+            .then(response => {
+            setData(response.data)
+            console.log(response.data)
+            })
+        }, [])
 
-    const log = () => {
-        console.log(props.data);
-    }
-    log()
+      if(data === undefined) {
+          return null
+      }
 
     const sorting = () => {
         if(order === "ASC") {
@@ -30,7 +37,7 @@ function SortTable(props) {
             setData(sortedArrayDsc);
         }
     }
-    const peoples = data;
+    console.log(data)
     return (
         <div> 
         <button className="btn btn-primary" onClick={() => sorting()}>Sort by name</button>
@@ -38,16 +45,16 @@ function SortTable(props) {
             <thead>
                 <tr>
                     <th scope="col">Id</th>
-                    <th scope="col" onClick={() => sorting("name")}>Name</th>
+                    <th scope="col" onClick={() => sorting()}>Name</th>
                     <th scope="col">PhoneNumber</th>
                     <th scope="col">City</th>
                     <th scope="col">Country</th>
-                    <th scope="col">Language</th>
+            
                 </tr>
             </thead>
             <tbody>
         
-            {peoples.map((person, index) => {
+            {data.map((person, index) => {
                 console.log("person: ")
                 console.log(person)
                 return (
@@ -64,11 +71,6 @@ function SortTable(props) {
                 <td>{person.phoneNumber} </td>
                 <td>{person.city.name} </td>
                 <td>{person.city.country.name}</td>
-                <td>
-                {person.personLanguage.map(name =>
-                 name.name + " "
-                )}
-                </td>
             </tr>
                 )
             })}
