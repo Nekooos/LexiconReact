@@ -42,7 +42,6 @@ class CreatePerson extends React.Component {
     validate = () => {
         let nameError = "";
         let phoneError = "";
-        let cityError = "";
 
         if(this.state.name === '') {
             nameError = "Name is required"
@@ -61,15 +60,6 @@ class CreatePerson extends React.Component {
 
         if(phoneError) {
             this.setState({ phoneErrorMessage: phoneError });
-            return false;
-        }
-
-        if(this.state.cityId === 0) {
-            cityError = "City is required";
-        }
-
-        if(cityError) {
-            this.setState({ cityErrorMessage: cityError });
             return false;
         }
 
@@ -137,7 +127,6 @@ class CreatePerson extends React.Component {
                     ) : null}
 
                 <select className="form-control" value={this.state.city} onChange={this.handleSelect}>
-                    <option>Select City</option>
                 {
                   cities.map(city => (
                       <option value={city.id}>{city.name} - {city.country.name}</option> 
